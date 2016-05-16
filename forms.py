@@ -9,6 +9,7 @@ class AddTaskForm(Form):
 	due_date = DateField(
 		'Date Due (mm/dd/yyyy)',
 		validators=[DataRequired()], format='%m/%d/%Y')
+	priority = SelectField('Priority', validators=[DataRequired()], \
 	choices = [('1', '1'), 
 			   ('2', '2'), 
 			   ('3', '3'), 
@@ -18,5 +19,5 @@ class AddTaskForm(Form):
 			   ('7', '7'), 
 			   ('8', '8'), 
 			   ('9', '9'), 
-			   ('10', '10')]
+			   ('10', '10')] )
 	status = IntegerField('Status')
