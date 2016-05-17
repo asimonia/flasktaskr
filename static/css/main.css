@@ -1,6 +1,15 @@
 body {
-  font-family: sans-serif;
-  background: #eee;
+  padding: 60px 0;
+  background: #ffffff;
+}
+
+.footer {
+  padding-top: 30px;
+}
+
+.error {
+  color: red;
+  font-size: .8em;
 }
 
 a, h1, h2 {
@@ -61,12 +70,6 @@ h2 {
 .flash {
   background: #CEE5F5;
   padding: 0.5em;
-}
-
-.error {
-  color: red;
-  font-size: .8em;
-  background-color: #FFFFFF;
 }
 
 .datagrid table {
