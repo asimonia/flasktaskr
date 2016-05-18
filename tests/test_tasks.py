@@ -4,9 +4,10 @@
 import os
 import unittest
 
-from views import app, db
-from _config import basedir
-from models import Task, User
+from project import app, db
+from project._config import basedir
+from project.models import Task, User
+
 
 TEST_DB = 'test.db'
 
@@ -91,6 +92,7 @@ class TasksTests(unittest.TestCase):
     def test_not_logged_in_users_cannot_access_tasks_page(self):
         response = self.app.get('tasks/', follow_redirects=True)
         self.assertIn(b'You need to login first.', response.data)
+
 
     def test_users_can_add_tasks(self):
         self.create_user('Michael', 'michael@realpython.com', 'python')
@@ -208,6 +210,15 @@ class TasksTests(unittest.TestCase):
         tasks = db.session.query(Task).all()
         for task in tasks:
             self.assertEqual(task.name, 'Run around in circles')
+
+
+    def test_task_template_displays_logged_in_user_name(self):
+        self.register(
+            'Fletcher', 'fletcher@realpython.com', 'python101', 'python101'
+        )
+        self.login('Fletcher', 'python101')
+        response = self.app.get('tasks/', follow_redirects=True)
+        self.assertIn(b'Fletcher', response.data)
 
 
 if __name__ == "__main__":
